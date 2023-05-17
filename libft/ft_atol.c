@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/18 00:59:15 by jcheel-n          #+#    #+#             */
+/*   Updated: 2023/05/18 00:59:25 by jcheel-n         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 long	ft_atol(const char *str)
 {
 	long	result;
 	int		sign;
-	
+
 	result = 0;
 	sign = 1;
 	while (*str == '\f' || *str == '\n' || *str == '\r'
@@ -26,4 +38,4 @@ long	ft_atol(const char *str)
 	else if (result > LONG_MAX)
 		return (0);
 	return (result * sign);
-}	
+}

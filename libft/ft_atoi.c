@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42barcelona.co  +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 17:42:52 by jcheel-n          #+#    #+#             */
-/*   Updated: 2022/05/31 12:47:48 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/05/18 00:59:51 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 int	ft_atoi(const char *str)
@@ -32,9 +33,9 @@ int	ft_atoi(const char *str)
 		result = (result * 10) + (*str - 48);
 		str++;
 	}
-	if (result < INT_MIN) 
+	if (result < INT_MIN)
 		return (-1);
-	else if (result > INT_MAX) 
+	else if (result > INT_MAX)
 		return (0);
 	return (result * sign);
 }	
