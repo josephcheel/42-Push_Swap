@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   reverse_rotate.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/17 18:18:39 by jcheel-n          #+#    #+#             */
+/*   Updated: 2023/05/17 18:21:06 by jcheel-n         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/push_swap.h"
 
 void	ft_rra(t_stack **stack_a, int twice)
@@ -13,7 +25,6 @@ void	ft_rra(t_stack **stack_a, int twice)
 	temp_one = *stack_a;
 	if (!temp_one->next)
 		return ;
-
 	while (temp_one->next)
 		temp_one = temp_one->next;
 	while (temp_two->next != temp_one)
@@ -38,7 +49,6 @@ void	ft_rrb(t_stack **stack_b, int twice)
 	temp_one = *stack_b;
 	if (!temp_one->next)
 		return ;
-
 	while (temp_one->next)
 		temp_one = temp_one->next;
 	while (temp_two->next != temp_one)

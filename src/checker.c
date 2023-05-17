@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/17 18:18:44 by jcheel-n          #+#    #+#             */
+/*   Updated: 2023/05/17 22:20:21 by jcheel-n         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/push_swap.h"
 
 void	ft_numarg(int ac, char **av)
@@ -20,17 +32,15 @@ void	ft_numarg(int ac, char **av)
 			{
 				write(2, "Error\n", 7);
 				exit(EXIT_FAILURE);
-				//error_param();
 			}
 			nbr++;
 		}
 		nbr = 0;
 		i++;
 	}
-
 }
 
-void ft_is_doubled(t_stack *stack_a)
+void	ft_is_doubled(t_stack *stack_a)
 {
 	t_stack	*temp;
 	t_stack	*temp2;
@@ -42,10 +52,9 @@ void ft_is_doubled(t_stack *stack_a)
 		temp2 = temp2->next;
 		while (temp2)
 		{
-			//printf("temp: %d temp2 :%d\n", temp->value, temp2->value);
 			if (temp->value == temp2->value)
 			{
-				//free list 
+				ft_delete_stack(&stack_a);
 				write(2, "Error\n", 7);
 				exit(EXIT_FAILURE);
 			}
@@ -56,28 +65,18 @@ void ft_is_doubled(t_stack *stack_a)
 	}
 }
 
-int ft_is_sorted(t_stack *stack_a)
+int	ft_is_sorted(t_stack *stack_a)
 {
 	t_stack	*temp;
 	t_stack	*temp2;
 
 	temp = stack_a;
 	temp2 = stack_a;
-	// if (temp2->next)
-	// 	temp2 = temp2->next;	
-
 	while (temp2->next)
 	{
-
 		temp2 = temp->next;
-		//printf("temp: %d temp2: %d\n", temp->value, temp2->value);
 		if (temp->value > temp2->value)
-		{
-			//write(2, "Not Odered\n", 13);
-			return (0); 
-			//free everything?? Programs continues as normally
-		
-		}
+			return (0);
 		temp = temp->next;
 	}
 	return (1);
@@ -85,8 +84,10 @@ int ft_is_sorted(t_stack *stack_a)
 
 void	ft_checker(t_stack *stack_a)
 {
-	ft_is_doubled(stack_a);
 	if (ft_is_sorted(stack_a))
-		exit(EXIT_FAILURE);	//Free everything?
-		// NUMBERS NOT MAX_INT MIN_INT
+	{
+		ft_delete_stack(&stack_a);
+		exit(EXIT_SUCCESS);
+	}
+	ft_is_doubled(stack_a);
 }

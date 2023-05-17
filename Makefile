@@ -41,7 +41,7 @@ LIBFT = libft/libft.a
 
 INCLUDE	= -I $(INC_DIR)
 
-LBFT_SRC	= main.c checker.c create_stack.c linkedlist.c reposition_stack.c stacklen.c find_index.c#swap_initializer.c checker.c errors.c ft_isduplicated_int.c
+LBFT_SRC	= main.c checker.c create_stack.c stack_utils.c stack_utils2.c  reposition_stack.c find_index.c delete_stack.c #swap_initializer.c checker.c errors.c ft_isduplicated_int.c
 
 MOVE_SRC	= swap.c push.c rotate.c reverse_rotate.c
 

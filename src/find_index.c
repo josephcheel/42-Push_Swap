@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   find_index.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/17 18:18:51 by jcheel-n          #+#    #+#             */
+/*   Updated: 2023/05/17 18:21:19 by jcheel-n         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/push_swap.h"
 
 static int	index(t_stack *head, int num)
@@ -16,7 +28,7 @@ static int	index(t_stack *head, int num)
 
 void	ft_indexation(t_stack *head)
 {
-	t_stack *temp;
+	t_stack	*temp;
 
 	temp = head;
 	while (temp)
