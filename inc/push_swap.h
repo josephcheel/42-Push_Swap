@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 00:51:06 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/05/18 00:51:18 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/05/19 00:36:16 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "../libft/libft.h"
+# include <stdio.h>
 
 typedef struct stack
 {
@@ -40,20 +41,20 @@ int		ft_is_sorted(t_stack *stack_a);
 void	ft_is_doubled(t_stack *stack_a);
 //===================MOVEMENTS=================//	
 
-void	ft_sa(t_stack **stack_a, int twice);
-void	ft_sb(t_stack **stack_b, int twice);
-void	ft_ss(t_stack **stack_a, t_stack **stack_b);
+void	ft_sa(t_stack **stack_a, int print);
+void	ft_sb(t_stack **stack_b, int print);
+void	ft_ss(t_stack **stack_a, t_stack **stack_b, int print);
 
-void	ft_pa(t_stack **stack_a, t_stack **stack_b);
-void	ft_pb(t_stack **stack_a, t_stack **stack_b);
+void	ft_pa(t_stack **stack_a, t_stack **stack_b, int print);
+void	ft_pb(t_stack **stack_a, t_stack **stack_b, int print);
 
-void	ft_ra(t_stack **stack_a, int twice);
-void	ft_rb(t_stack **stack_a, int twice);
-void	ft_rr(t_stack **stack_a, t_stack **stack_b);
+void	ft_ra(t_stack **stack_a, int print);
+void	ft_rb(t_stack **stack_b, int print);
+void	ft_rr(t_stack **stack_a, t_stack **stack_b, int print);
 
-void	ft_rra(t_stack **stack_a, int twice);
-void	ft_rrb(t_stack **stack_b, int twice);
-void	ft_rrr(t_stack **stack_a, t_stack **stack_b);
+void	ft_rra(t_stack **stack_a, int print);
+void	ft_rrb(t_stack **stack_b, int print);
+void	ft_rrr(t_stack **stack_a, t_stack **stack_b, int print);
 
 //===================ALGORITHM=================//
 void	ft_algorithm(t_stack **stack_a, t_stack **stack_b);

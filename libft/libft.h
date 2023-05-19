@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcheel-n <jcheel-n@student.42barcelona.co  +#+  +:+       +#+        */
+/*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:01:53 by jcheel-n          #+#    #+#             */
-/*   Updated: 2022/05/13 13:25:22 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/05/19 00:14:31 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef LIBFT_H
 # define LIBFT_H
 
@@ -69,5 +70,16 @@ void			ft_lstdelone(t_list *lst, void (*del)(void *));
 void			ft_lstclear(t_list **lst, void (*del)(void *));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void*), void (*del)(void *));
+
+//*************** GET NEXT LINE  *****************//
+
+# define BUFFER_SIZE 1048
+
+char			*get_next_line(int fd);
+
+//*************** EXTRA FUNCTIONS *****************//
+char			*ft_substrfree(char const *s, unsigned int start, size_t len,
+					int freeme);
+char			*ft_strjoinfree(char *s1, char *s2);
 
 #endif

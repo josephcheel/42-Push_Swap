@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 00:36:59 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/05/18 00:37:01 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/05/18 23:53:18 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ void	ft_move_to_top(t_stack **head, int index_to_move)
 	tmp = ft_find_index(*head, index_to_move);
 	if (tmp->up)
 		while (*head != tmp)
-			ft_ra(head, 0);
+			ft_ra(head, 1);
 	else
 		while (*head != tmp)
-			ft_rra(head, 0);
+			ft_rra(head, 1);
 }
 
 int	ft_find_smallest_cost_int(t_stack *stack)

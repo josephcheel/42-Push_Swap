@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 18:18:29 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/05/18 00:38:53 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/05/18 23:52:46 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,17 +74,17 @@ void	ft_move_up(t_stack **stack_a, t_stack **stack_b,
 	while (*stack_a != *target)
 	{
 		if ((*target)->up)
-			ft_ra(stack_a, 0);
+			ft_ra(stack_a, 1);
 		else
-			ft_rra(stack_a, 0);
+			ft_rra(stack_a, 1);
 		ft_reposition_stack(*stack_a);
 	}
 	while (*stack_b != *cheapest)
 	{
 		if ((*cheapest)->up)
-			ft_rb(stack_b, 0);
+			ft_rb(stack_b, 1);
 		else
-			ft_rrb(stack_b, 0);
+			ft_rrb(stack_b, 1);
 		ft_reposition_stack(*stack_b);
 	}
 }
@@ -98,14 +98,14 @@ void	ft_move(t_data *data, t_stack **stack_a, t_stack **stack_b)
 	target = ft_find_index(*stack_a, cheapest->i_target);
 	if (cheapest->up == 1 && target->up == 1)
 		while (*stack_a != target && *stack_b != cheapest)
-			ft_rr(stack_a, stack_b);
+			ft_rr(stack_a, stack_b, 1);
 	else if (cheapest->up == 0 && target->up == 0)
 		while (*stack_a != target && *stack_b != cheapest)
-			ft_rrr(stack_a, stack_b);
+			ft_rrr(stack_a, stack_b, 1);
 	ft_reposition_stack(*stack_a);
 	ft_reposition_stack(*stack_b);
 	ft_move_up(stack_a, stack_b, &target, &cheapest);
-	ft_pa(stack_a, stack_b);
+	ft_pa(stack_a, stack_b, 1);
 }
 
 void	ft_order_hundred(t_stack *stack_a, t_stack *stack_b)
@@ -115,9 +115,9 @@ void	ft_order_hundred(t_stack *stack_a, t_stack *stack_b)
 
 	data.max_index = ft_listsize(stack_a);
 	size = ft_listsize(stack_a);
-	ft_pa(&stack_a, &stack_b);
+	ft_pa(&stack_a, &stack_b, 1);
 	while (size-- > 3)
-		ft_pb(&stack_a, &stack_b);
+		ft_pb(&stack_a, &stack_b, 1);
 	ft_order_three(&stack_a, 0);
 	while (stack_b)
 	{

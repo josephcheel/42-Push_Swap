@@ -6,13 +6,13 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 18:18:40 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/05/17 18:21:08 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/05/18 23:48:53 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/push_swap.h"
 
-void	ft_ra(t_stack **stack_a, int twice)
+void	ft_ra(t_stack **stack_a, int print)
 {
 	t_stack	*temp_one;
 	t_stack	*temp_two;
@@ -31,11 +31,11 @@ void	ft_ra(t_stack **stack_a, int twice)
 		temp_one = temp_one->next;
 	temp_one->next = temp_two;
 	temp_two->next = NULL;
-	if (!twice)
+	if (print)
 		write(1, "ra\n", 3);
 }
 
-void	ft_rb(t_stack **stack_b, int twice)
+void	ft_rb(t_stack **stack_b, int print)
 {
 	t_stack	*temp_one;
 	t_stack	*temp_two;
@@ -54,13 +54,14 @@ void	ft_rb(t_stack **stack_b, int twice)
 		temp_one = temp_one->next;
 	temp_one->next = temp_two;
 	temp_two->next = NULL;
-	if (!twice)
+	if (print)
 		write(1, "rb\n", 3);
 }
 
-void	ft_rr(t_stack **stack_a, t_stack **stack_b)
+void	ft_rr(t_stack **stack_a, t_stack **stack_b, int print)
 {
-	ft_ra(stack_a, 1);
-	ft_rb(stack_b, 1);
-	write(1, "rr\n", 3);
+	ft_ra(stack_a, 0);
+	ft_rb(stack_b, 0);
+	if (print)
+		write(1, "rr\n", 3);
 }

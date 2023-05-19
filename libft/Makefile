@@ -1,28 +1,5 @@
 NAME	=	libft.a
 
-ifneq (,$(findstring xterm,${TERM}))
-	BLACK        := $(shell tput -Txterm setaf 0)
-	RED          := $(shell tput -Txterm setaf 1)
-	GREEN        := $(shell tput -Txterm setaf 2)
-	YELLOW       := $(shell tput -Txterm setaf 3)
-	LIGHTPURPLE  := $(shell tput -Txterm setaf 4)
-	PURPLE       := $(shell tput -Txterm setaf 5)
-	BLUE         := $(shell tput -Txterm setaf 6)
-	WHITE        := $(shell tput -Txterm setaf 7)
-	RESET		 := $(shell tput -Txterm sgr0)
-else
-	BLACK        := ""
-	RED          := ""
-	GREEN        := ""
-	YELLOW       := ""
-	LIGHTPURPLE  := ""
-	PURPLE       := ""
-	BLUE         := ""
-	WHITE        := ""
-	RESET        := ""
-endif
-
-
 SRCS	= ft_isalpha.c \
 		  ft_isdigit.c \
 		  ft_isalnum.c \
@@ -70,34 +47,50 @@ BONUS	= ft_lstnew.c \
 		  ft_lstiter.c \
 		  ft_lstmap.c \
 
+SRCS_EXTRA = ft_substrfree.c \
+			ft_strjoinfree.c \
+			get_next_line.c \
+
 BONUS_OBJS = ${BONUS:.c=.o}
 
-OBJS = ${SRCS:.c=.o}
+OBJS = ${SRCS:.c=.o} $(SRCS_EXTRA:.c=.o)
 
-CC		=	gcc
+CC		= gcc
 
 CFLAGS	=	-Wall -Werror -Wextra
 
-RM 		= 	rm -f
+RM 		= 		rm -f
 
 .c.o:
 		@$(CC) $(CFLAGS) -c  $< -o $(<:.c=.o)
 
-$(NAME):	$(OBJS) $(BONUS_OBJS) libft.h
+$(NAME):	$(OBJS) $(BONUS_OBJS) 
 			@ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
-			@echo "$(GREEN)Libft Compiled$(RESET)"
-			
+			@echo "$(OK_COLOR)libft compiled!$(NO_COLOR)"
+
 all:		$(NAME)
 
 bonus: ${BONUS_OBJS} ${OBJS}
 		@ar rcs ${NAME} ${BONUS_OBJS} ${OBJS}
-		@touch $@
 clean:
 			@$(RM) $(OBJS) $(BONUS_OBJS)
-fclean:		clean
+
+fclean:		clean  
 			@$(RM) $(NAME)
-			@$(RM) bonus
 
 re:			fclean all
 
 .PHONY: all clean fclean re 
+
+#●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
+#•❅──────✧❅✦❅✧──────❅••❅──────✧❅✦❅✧─COLOR──✧❅✦❅✧──────❅••❅──────✧❅✦❅✧──────❅•#
+#●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●●○●○●○●○●○●○●○●○●○●#
+
+NO_COLOR=\x1b[0m
+OK_COLOR=\x1b[32;01m
+ERROR_COLOR=\x1b[31;01m
+WARN_COLOR=\x1b[33;01m
+
+OK_STRING=$(OK_COLOR)[OK]$(NO_COLOR)
+ERROR_STRING=$(ERROR_COLOR)[ERRORS]$(NO_COLOR)
+WARN_STRING=$(WARN_COLOR)[WARNINGS]$(NO_COLOR)

@@ -20,39 +20,54 @@ else
 	RESET        := ""
 endif
 
-NAME	=	push_swap
+NAME		=	push_swap
+NAME_BONUS	=	checker
 
-CFLAGS =  -W -Wall -Wextra -Werror 
+CFLAGS	=  -W -Wall -Wextra -Werror 
 XFLAGS	= -fsanitize=address -g2
 
 AR		= ar -rcs
 RM		= rm -f
 MD		= mkdir -p
 CP		= cp -f
-CC			= gcc
+CC		= gcc
 
 SRC_DIR		= src/
 OBJ_DIR		= obj/
 INC_DIR		= inc/
 MOVE_DIR	= movements/
 ALG_DIR		= algorithm/
+BONUS_DIR	=	bonus/
 
 LIBFT = libft/libft.a
 
 INCLUDE	= -I $(INC_DIR)
 
-LBFT_SRC	= main.c checker.c create_stack.c stack_utils.c stack_utils2.c  reposition_stack.c find_index.c delete_stack.c #swap_initializer.c checker.c errors.c ft_isduplicated_int.c
+PS_SRC		= main.c 
+
+UTILS_SRC	= checker.c create_stack.c stack_utils.c stack_utils2.c  reposition_stack.c find_index.c delete_stack.c
 
 MOVE_SRC	= swap.c push.c rotate.c reverse_rotate.c
 
 ALG_SRC		= algorithm.c order_two.c order_three.c order_five.c order_hundred.c
 
-SRCS	+=	$(addprefix $(SRC_DIR), $(LBFT_SRC))
+BONUS_SRC	= bonus.c 
+
+SRCS	+=	$(addprefix $(SRC_DIR), $(PS_SRC))
+SRCS	+= 	$(addprefix $(SRC_DIR), $(UTILS_SRC))
 SRCS	+=	$(addprefix $(SRC_DIR), $(addprefix $(MOVE_DIR), $(MOVE_SRC)))
 SRCS	+=	$(addprefix $(SRC_DIR), $(addprefix $(ALG_DIR), $(ALG_SRC)))
 
-OBJS	=	$(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
-DEPS	=	$(addsuffix .d, $(basename $(OBJS)))
+SRCS_BONUS	+=	$(addprefix $(SRC_DIR), $(addprefix $(BONUS_DIR), $(BONUS_SRC)))
+SRCS_BONUS	+=	$(addprefix $(SRC_DIR), $(addprefix $(MOVE_DIR), $(MOVE_SRC)))
+SRCS_BONUS	+=	$(addprefix $(SRC_DIR), $(addprefix $(ALG_DIR), $(ALG_SRC)))
+SRCS_BONUS	+=	$(addprefix $(SRC_DIR), $(UTILS_SRC))
+
+OBJS		=	$(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
+OBJS_BONUS	=	$(addprefix $(OBJ_DIR), $(SRCS_BONUS:.c=.o))
+
+DEPS		=	$(addsuffix .d, $(basename $(OBJS)))
+DEPS_BONUS	+=	$(addsuffix .d, $(basename $(OBJS_BONUS)))
 
 $(OBJ_DIR)%.o: %.c Makefile
 		@make -sC libft
@@ -60,7 +75,16 @@ $(OBJ_DIR)%.o: %.c Makefile
 		@echo "$(YELLOW)Compiling: $<$(RESET)"
 		@$(CC)  -MT $@ -MMD -MP $(CFLAGS) $(INCLUDE) -c $< -o $@ 
 
-all:		$(NAME) 
+all:		$(NAME)
+
+bonus :		$(NAME_BONUS)
+
+
+$(NAME_BONUS): $(OBJS_BONUS)
+
+$(NAME_BONUS):	$(OBJS_BONUS)
+		@$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBFT) -o $(NAME_BONUS)
+		@echo "$(GREEN)✓CHECKER COMPILED✓$(RESET)"
 
 $(NAME):	$(OBJS)
 		@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
@@ -72,11 +96,12 @@ clean:
 		@echo "$(RED)Dependencies and objects removed$(RESET)"
 
 fclean:		clean  
-		@$(RM) $(NAME)
+		@$(RM) $(NAME) $(NAME_BONUS)
 		@make fclean -C libft
 		@echo "$(RED)$(NAME) Removed$(RESET)"
 re:			fclean all
 
 -include $(DEPS)
+-include $(DEPS_BONUS)
 
-.PHONY: all clean fclean re 
+.PHONY: all bonus clean fclean re 
