@@ -62,11 +62,12 @@ CFLAGS	=	-Wall -Werror -Wextra
 RM 		= 		rm -f
 
 .c.o:
+		@echo "$(YELLOW)Compiling: $<$(RESET)"
 		@$(CC) $(CFLAGS) -c  $< -o $(<:.c=.o)
 
 $(NAME):	$(OBJS) $(BONUS_OBJS) 
 			@ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
-			@echo "$(OK_COLOR)libft compiled!$(NO_COLOR)"
+			echo "$(OK_COLOR)libft compiled!$(NO_COLOR)"
 
 all:		$(NAME)
 

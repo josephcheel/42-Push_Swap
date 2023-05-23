@@ -75,7 +75,8 @@ $(OBJ_DIR)%.o: %.c Makefile
 		@echo "$(YELLOW)Compiling: $<$(RESET)"
 		@$(CC)  -MT $@ -MMD -MP $(CFLAGS) $(INCLUDE) -c $< -o $@ 
 
-all:		$(NAME)
+all:		$(NAME)	
+		@make -sC libft
 
 bonus :		$(NAME_BONUS)
 
