@@ -6,7 +6,7 @@
 /*   By: jcheel-n <jcheel-n@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 18:18:44 by jcheel-n          #+#    #+#             */
-/*   Updated: 2023/05/19 01:03:21 by jcheel-n         ###   ########.fr       */
+/*   Updated: 2023/05/23 19:40:29 by jcheel-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,10 @@ int	ft_is_sorted(t_stack *stack_a)
 
 void	ft_checker(t_stack *stack_a)
 {
+	ft_is_doubled(stack_a);
 	if (ft_is_sorted(stack_a))
 	{
 		ft_delete_stack(&stack_a);
 		exit(EXIT_SUCCESS);
 	}
-	ft_is_doubled(stack_a);
 }
